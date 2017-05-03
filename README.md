@@ -1,6 +1,6 @@
 ##微服务screenshots说明档
 
-- 微服务英文名:  screenshots
+- 微服务名:  screenshots
 - Python3 + Flask + Selenium + PhantomJS http screenshot service
 - return code
     - ok
@@ -31,12 +31,18 @@
         - 请求参数说明,请求方式为post 格式为json 参数有两个
             - url "http://www.baidu.com"
             - cut  1000,560,0,0
+
+
  ``` width = cut.split(",")[0]  宽
         height= cut.split(",")[1] 高
         x = cut.split(",")[2] 起点x轴坐标
         y = cut.split(",")[3] 起点y轴坐标
  ```
+
+
     - 请求案例
+
+
 ```
 curl -X POST \
   http://127.0.0.1/screenshot \
@@ -55,6 +61,7 @@ curl -X POST \
         ]
 }'
 ```
+
 
 -  screenshot_flow  ![服务流程](http://7xnw62.com1.z0.glb.clouddn.com/screenshot_flow.png)
 
