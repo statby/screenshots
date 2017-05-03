@@ -1,22 +1,22 @@
-##Î¢·þÎñscreenshotsËµÃ÷µµ
+##å¾®æœåŠ¡screenshotsè¯´æ˜Žæ¡£
 
-- Î¢·þÎñÃû:  screenshots
+- å¾®æœåŠ¡å:  screenshots
 - Python3 + Flask + Selenium + PhantomJS http screenshot service
 - return code
     - ok
     - error
-- ¾¡Á¿×ñÑ­pep8
-- scribeÈÕÖ¾¸ñÊ½
+- å°½é‡éµå¾ªpep8
+- scribeæ—¥å¿—æ ¼å¼
     - SCRIBE_CATEGORY='screenshot'
     - ``` scribe_msg = '\01'.join([str(ntime()),HOSTNAME,SCRIBE_CATEGORY,runtime,'0',source]) ```
--  ÒÀÀµ
-    - ÓòÃûÒÀÀµ
+-  ä¾èµ–
+    - åŸŸåä¾èµ–
         - http://127.0.0.1/screenshot
-    - ·þÎñÒÀÀµ
-        - phantomjs °æ±¾2.1.1
-        - Python °æ±¾ 3.5.3  3.5.2 ²âÊÔÍ¨¹ý
-        - redis 3.2.3  ²âÊÔÍ¨¹ý
-    - ·þÎñÆô¶¯·½Ê½
+    - æœåŠ¡ä¾èµ–
+        - phantomjs ç‰ˆæœ¬2.1.1
+        - Python ç‰ˆæœ¬ 3.5.3  3.5.2 æµ‹è¯•é€šè¿‡
+        - redis 3.2.3  æµ‹è¯•é€šè¿‡
+    - æœåŠ¡å¯åŠ¨æ–¹å¼
         - ```/etc/init.d/redis start```
         - ``` python screenshot_daemon.py  start```
         - ``` python  /usr/bin/gunicorn -w 4 -b 0.0.0.0:80 screenshot_http:app ```
@@ -24,23 +24,24 @@
 
 
 
-- µ÷ÓÃËµÃ÷
-    - ¸Ã·þÎñÔ¼¶¨¸ù¾ÝurlµÄmd5Öµ´æ·Åµ½Â·¾¶
-    -  ``` /data0/moosefs/client/screenshots/  + Ç°Á½Î»md5 + / + url md5 + .png```
+- è°ƒç”¨è¯´æ˜Ž
+    - è¯¥æœåŠ¡çº¦å®šæ ¹æ®urlçš„md5å€¼å­˜æ”¾åˆ°è·¯å¾„
+    -  ``` /data0/moosefs/client/screenshots/  + å‰ä¸¤ä½md5 + / + url md5 + .png```
     - ```save_pwd = SCREENSHOT_DIR + '/' + str(md5encode(url))[0:2] + '/' + str(md5encode(url)) + '.png'```
-        - ÇëÇó²ÎÊýËµÃ÷,ÇëÇó·½Ê½Îªpost ¸ñÊ½Îªjson ²ÎÊýÓÐÁ½¸ö
+        - è¯·æ±‚å‚æ•°è¯´æ˜Ž,è¯·æ±‚æ–¹å¼ä¸ºpost æ ¼å¼ä¸ºjson å‚æ•°æœ‰ä¸¤ä¸ª
             - url "http://www.baidu.com"
             - cut  1000,560,0,0
 
 
- ``` width = cut.split(",")[0]  ¿í
-        height= cut.split(",")[1] ¸ß
-        x = cut.split(",")[2] ÆðµãxÖá×ø±ê
-        y = cut.split(",")[3] ÆðµãyÖá×ø±ê
+ ``` 
+width = cut.split(",")[0]  å®½
+height= cut.split(",")[1] é«˜
+x = cut.split(",")[2] èµ·ç‚¹xè½´åæ ‡
+y = cut.split(",")[3] èµ·ç‚¹yè½´åæ ‡
  ```
 
 
-    - ÇëÇó°¸Àý
+    - è¯·æ±‚æ¡ˆä¾‹
 
 
 ```
@@ -63,12 +64,14 @@ curl -X POST \
 ```
 
 
--  screenshot_flow  ![·þÎñÁ÷³Ì](http://7xnw62.com1.z0.glb.clouddn.com/screenshot_flow.png)
+-  screenshot_flow  ![æœåŠ¡æµç¨‹](http://7xnw62.com1.z0.glb.clouddn.com/screenshot_flow.png)
 
 
 - cat /etc/supervisord.conf
 
-> [unix_http_server]
+
+```
+[unix_http_server]
 file=/tmp/supervisor.sock   ; (the path to the socket file)
 [supervisord]
 logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
@@ -91,8 +94,7 @@ autorestart=true
 startsecs=1
 stderr_logfile=/opt/screenshots/logs/http_server.log
 stdout_logfile=/opt/screenshots/logs/http_server.log
-
-
+```
 
 -------
 
